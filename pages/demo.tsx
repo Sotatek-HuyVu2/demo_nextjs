@@ -1,7 +1,9 @@
-import {FormEvent, useState} from 'react'
+import {FormEvent, useEffect, useState} from 'react'
 import {v4 as uuid4} from 'uuid'
 import {Container, Header, Form, Content, SortMenu, TasksContainer, Task, Status} from '../styles/home'
 import {TaskProps} from "../utils/interface";
+import { useDispatch, useSelector } from 'react-redux';
+import { setTodos } from '../store/todos/reducers';
 
 export default function Demo() {
     const [task, setTask] = useState<string>('')
@@ -9,6 +11,19 @@ export default function Demo() {
     const [idTaskToEdit, setIdTaskToEdit] = useState<string>('')
     const [isEdit, setIsEdit] = useState<boolean>(false)
     const [taskList, setTaskList] = useState<TaskProps[]>([])
+    const listTodos = useSelector((state: any) => state.todo.todos);
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        setTaskList(listTodos)
+    },[dispatch])
+
+    useEffect(()=>{
+        dispatch(
+            setTodos(taskList)
+        );
+    },[taskList])
 
     const handleAdd = (event: FormEvent) => {
         event.preventDefault()
@@ -57,10 +72,13 @@ export default function Demo() {
         }
 
         const updatedTaskList = taskList.map(taskItem => {
+
             if (taskItem.id === id) {
-                taskItem.task = task
-                taskItem.updatedAt = Date.now()
-                return taskItem
+                return{
+                    ...taskItem,
+                    task:task,
+                    updatedAt:Date.now()
+                }
             }
             return taskItem
         })
@@ -79,8 +97,10 @@ export default function Demo() {
     const onCompletedTask = (id: string) => {
         const setCompletedTaskList = taskList.map(task => {
             if (task.id === id) {
-                task.isCompleted = !task.isCompleted
-                return task
+                return {
+                    ...task,
+                    isCompleted:!task.isCompleted
+                }
             }
             return task
         })
