@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import Menu from "../components/menu";
 import { Provider } from 'react-redux';
 import store from '../store/configure-store';
+import 'antd/dist/antd.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (

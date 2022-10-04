@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     @media (max-width: 720px) {
       font-size: 87.5%;
-      }
+    }
   }
 
   body {
@@ -37,6 +37,13 @@ const GlobalStyle = createGlobalStyle`
 
   button {
     cursor: pointer;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    outline: none;
+    border:1px solid;
   }
 
   [disabled] {

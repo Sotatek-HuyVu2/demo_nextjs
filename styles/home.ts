@@ -19,16 +19,16 @@ export const MenuComponent = styled.div`
 `;
 
 export const Container = styled.div`
+  margin-top: 50px;
   width: 100vw;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 0 1rem;
+  gap:50px
 `;
 
 export const Header = styled.header`
   width: 100%;
-  height: 350px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,7 +45,6 @@ export const Header = styled.header`
   h1 {
     font-size: 3rem;
     font-weight: bold;
-    margin-top: 3.5rem;
     color:#000000
   }
 
@@ -118,13 +117,7 @@ export const Form = styled.form`
 `;
 
 export const Content = styled.main`
-  max-width: 775px;
-  width: 100%;
-
-  margin: -5rem 1rem 0 1rem;
-  padding: 1rem;
-
-  background: var(--gray-700);
+  flex:1;
   border-radius: 0.5rem;
 `;
 
@@ -134,8 +127,7 @@ export const SortMenu = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin: 0.5rem 0;
+  margin-bottom: 20px;
 
   div {
     button {
